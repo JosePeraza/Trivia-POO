@@ -9,10 +9,10 @@ function getQuestions() {
 
     fetch(url)
         .then((response) => response.json())
-        .then((data) => printData(data.results));
+        .then((data) => printQuestions(data.results));
 }
 
-function printData(data) {
+function printQuestions(data) {
     //obtener donde quiero los elementos/datos
     const containerData = document.getElementById('questions-container');
 
@@ -32,3 +32,22 @@ function printData(data) {
     containerData.innerHTML = html;
 }
 
+function getCategories() {
+    const url = 'https://opentdb.com/api_category.php';
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => printCategories(data.trivia_categories));
+}
+
+function printCategories(categories) {
+    //obtener donde quiero los elementos/datos
+    const categoryData = document.getElementById('questions-category');
+
+    //generar los datos/elementos                    
+    
+    categories.forEach(element => {
+        categoryData.innerHTML += `<option value="${element.id}">${element.name}</option>`;
+    });
+}
+
+getCategories();
