@@ -1,3 +1,8 @@
+const alreadyLoggedIn = localStorage.getItem('loggedIn');
+if(alreadyLoggedIn) {
+    window.location.replace("/dashboard.html");
+}
+
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
 function addUser() {
@@ -23,6 +28,5 @@ function addUser() {
     console.log(users);
     localStorage.setItem('users', JSON.stringify(users));
 
-    //Limpiamos el formulario al darle push
-    document.getElementById('form-cars').reset();
+    window.location.replace("/login.html");
 }
