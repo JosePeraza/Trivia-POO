@@ -12,16 +12,62 @@
         <form action="#">
             <div class="form-group">
                 <label for="total-questions">Seleccione el numero de preguntas</label>
-                <select onchange="getQuestions();" class="form-select" id="total-questions">
-                    <option selected>¿Cuántas preguntas desea responder?</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                  </select>
+                <select class="form-select" id="total-questions">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <label class="mt-3" for="questions-category">Seleccione la categoria de pregunta</label>
+                <select class="form-select" id="questions-category">
+                    <option value="" selected>Cualquier categoria</option>
+                    <option value="9">Conocimiento general</option>
+                    <option value="10">Entretenimiento: Libros</option>
+                    <option value="11">Entretenimiento: Peliculas</option>
+                    <option value="12">Entretenimiento: Musica</option>
+                    <option value="13">Entretenimiento: Teatro y musicales</option>
+                    <option value="14">Entretenimiento: Television</option>
+                    <option value="15">Entretenimiento: Videojuegos</option>
+                    <option value="16">Entretenimiento: Juegos de mesa</option>
+                    <option value="29">Entretenimiento: Comics</option>
+                    <option value="31">Entretenimiento: Anime y manga japones</option>
+                    <option value="32">Entretenimiento: Cartoons y animacion</option>
+                    <option value="17">Ciencia y naturaleza</option>
+                    <option value="18">Ciencia: Computadoras</option>
+                    <option value="19">Ciencia: Matematicas</option>
+                    <option value="30">Ciencia: Gatdgets</option>
+                    <option value="20">Mitologia</option>
+                    <option value="21">Deportes</option>
+                    <option value="22">Geografia</option>
+                    <option value="23">Historia</option>
+                    <option value="24">Politica</option>
+                    <option value="25">Arte</option>
+                    <option value="26">Celebridades</option>
+                    <option value="27">animales</option>
+                    <option value="28">Vehiculos</option>
+                </select>
+
+                <label class="mt-3" for="questions-difficult">Seleccione la dificultad</label>
+                <select class="form-select" id="questions-difficult">
+                    <option value="" selected>Cualquier dificultad</option>
+                    <option value="easy">Facil</option>
+                    <option value="medium">medio</option>
+                    <option value="hard">Dificil</option>
+                </select>
+
+                <label class="mt-3" for="questions-type">Seleccione tipo el de pregunta</label>
+                <select class="form-select" id="questions-type">
+                    <option value="" selected>Cualquier tipo</option>
+                    <option value="multiple">Opcion multiple</option>
+                    <option value="boolean">Verdadero o falso</option>
+                </select>
+                <button onclick="getQuestions()" class="btn btn-primary buttom-form mt-2" id="cancel">ayy lmao</button>
             </div>
         </form>
-        <div class="row" id="questions-container">
-
+        <div class="row mt-5" id="questions-container">
+            
         </div>
     </div>
     <script src="./api.js"></script>
