@@ -9,27 +9,57 @@ function getQuestions() {
 
     fetch(url)
         .then((response) => response.json())
-        .then((data) => printQuestions(data.results));
+        .then((data) => printQuestions(data));
+ 
 }
 
 function printQuestions(data) {
-    //obtener donde quiero los elementos/datos
+    if(data.response_code === 1) {
+        const container = document.getElementById('questions-container');
+        container.innerHTML = ` <h2>¡Lo sentimos, no hay suficientes preguntas para mostrar!</h2>
+                                    <h2><small class="text-muted">Intente con menos preguntas...</small></h2>`;
+    } else {
+        //obtener donde quiero los elementos/datos
     const containerData = document.getElementById('questions-container');
 
     //generar los datos/elementos                    
     let html = '';
+    
 
-    data.forEach(element => {
+    data.results.forEach(element => {
+        const incorrectAnswer = element.incorrect_answers;
+        const correctAnswer = element.correct_answer;
+        incorrectAnswer.push(correctAnswer);
+        
+        answers = incorrectAnswer.sort(() => Math.random() - 0.5)
+
+        console.log(answers);
+
+        let htmlIncorrectA = '';
+
+
+
+        answers.forEach(currentA => {
+            htmlIncorrectA +=   `<div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            ${currentA}
+                        </label>
+                    </div>`
+        });
+
         html += `   <div class="col-md-4 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
-                            ${element.question}
+                                ${element.question}
+                                ${htmlIncorrectA}
                             </div>
                         </div>
                     </div>`;
     });
     //poner los datos en html
     containerData.innerHTML = html;
+    } 
 }
 
 function getCategories() {
