@@ -19,12 +19,12 @@ function printQuestions(data) {
         container.innerHTML = ` <h2>¡Lo sentimos, no hay suficientes preguntas para mostrar!</h2>
                                     <h2><small class="text-muted">Intente con menos preguntas...</small></h2>`;
     } else {
-        //obtener donde quiero los elementos/datos
+    //obtener donde quiero los elementos/datos
     const containerData = document.getElementById('questions-container');
 
     //generar los datos/elementos                    
     let html = '';
-    
+    let i = 1;
 
     data.results.forEach(element => {
         const incorrectAnswer = element.incorrect_answers;
@@ -33,29 +33,34 @@ function printQuestions(data) {
         
         answers = incorrectAnswer.sort(() => Math.random() - 0.5)
 
-        console.log(answers);
+        // console.log(answers);
 
         let htmlIncorrectA = '';
 
-
-
+        
+        let a = 1;
         answers.forEach(currentA => {
-            htmlIncorrectA +=   `<div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            ${currentA}
-                        </label>
-                    </div>`
+            
+            htmlIncorrectA +=   `<div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="p${i}"  required>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    ${currentA}
+                                </label>
+                            </div>`
+                            const totalQuestionss = document.getElementById('answers-form');
+                            console.log(totalQuestionss["p" + i]);
+            a++;                
         });
 
-        html += `   <div class="col-md-4 mb-3">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                ${element.question}
-                                ${htmlIncorrectA}
-                            </div>
+        html += `<div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            ${element.question}
+                            ${htmlIncorrectA}
                         </div>
-                    </div>`;
+                    </div>
+                </div>`;
+        i++;
     });
     //poner los datos en html
     containerData.innerHTML = html;
